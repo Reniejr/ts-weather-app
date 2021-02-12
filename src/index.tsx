@@ -1,12 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './index.css';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
+import RouterWeb from './_COMPONENTS/_MAIN/_RouterWeb/RouterWeb'
+import { Provider } from 'react-redux'
+import { storeConfig } from './_STORE'
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Provider store={ storeConfig }>
+      <RouterWeb/>
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );

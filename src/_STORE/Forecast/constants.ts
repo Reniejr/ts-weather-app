@@ -1,0 +1,2 @@
+export const CURRENT_FORECAST = 'SHOW_FORECAST'
+export const WEEK_FORECAST = 'WEEK_FORECAST'

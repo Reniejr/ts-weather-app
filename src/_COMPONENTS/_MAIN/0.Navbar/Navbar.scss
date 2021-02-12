@@ -1,0 +1,69 @@
+@import '../../../_SASS/CrossBrowser';
+@import '../../../_SASS/Colors';
+@import '../../../_SASS/Positions';
+.weather-nav{
+    width: 100%;
+    height: 84px;
+    padding: 1rem;
+    position: fixed;
+    top: 0;
+    border-bottom: 1px solid $black01;
+    display: flex;
+    align-items: center;
+    backdrop-filter: blur(10px);
+    background-color: rgba(255, 255, 255, 0.5);
+    .logo{
+        width: 25%;
+        @include flexCenter(row, false, 'y');
+        margin-right: 1rem;
+        img{
+            margin-right: .5rem;
+            width: 95px;
+        }
+        span{
+            text-transform: uppercase;
+            font-weight: 800;
+            font-size: 1.5rem;
+        }
+    }
+    .search-bar{
+        width: 75%;
+        .search-inputs{
+            @include flexCenter(row, false, 'y');
+            @include borderRadius(5px);
+            border: 1px solid $black05;
+            padding: .5rem;
+            background-color: rgba(255, 255, 255, 0.8);
+            i{
+                margin-right: .5rem;
+                font-size: 1.5rem;
+            }
+            .byCity, .byCoord{
+                @include flexCenter(row, false, 'y');
+                width: 90%;
+                input{
+                    width: 60%;
+                    outline: none;
+                    border: none;
+                    font-size: .9rem;
+                    font-weight: 700;
+                    padding: 4px 10px;
+                    background-color: rgba(255, 255, 255, 0.1);
+                }
+                input:nth-of-type(1){
+                    border-left: 1px solid $black05;
+                    border-right: 1px solid $black05;
+                }
+            }
+        }
+        p{
+            margin: 0;
+            font-size: .75rem;
+            color: $black05;
+            cursor: pointer;
+            &:hover{
+                text-decoration: underline;
+            }
+        }
+    }
+}

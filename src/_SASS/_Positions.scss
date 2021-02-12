@@ -1,0 +1,10 @@
+@mixin flexCenter($direction, $x, $y){
+    display:flex;
+    flex-direction: $direction;
+    @if($x == 'x'){
+        justify-content: center;
+    }
+    @if($y == 'y'){
+        align-items: center;
+    }
+}
