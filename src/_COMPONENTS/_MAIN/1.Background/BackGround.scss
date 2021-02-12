@@ -1,0 +1,17 @@
+@import '../../../_SASS/CrossBrowser';
+@import '../../../_SASS/Colors';
+@import '../../../_SASS/Positions';
+.background{
+    width: 100%;
+    height: 200%;
+    z-index: -1;
+    position: absolute;
+    top: 0;
+    background-size: cover;
+    background-position: center;
+    transition: all 2s ease-in-out;
+    -webkit-transition: all 2s ease-in-out;
+    -moz-transition: all 2s ease-in-out;
+    -ms-transition: all 2s ease-in-out;
+    -o-transition: all 2s ease-in-out;
+}

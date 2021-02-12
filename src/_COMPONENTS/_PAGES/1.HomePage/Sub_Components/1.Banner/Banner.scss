@@ -1,0 +1,118 @@
+@import '../../../../../_SASS/Colors';
+@import '../../../../../_SASS/Positions';
+@import '../../../../../_SASS/CrossBrowser';
+
+.banner{
+    width: 100%;
+    display: flex;
+    padding: 1rem;
+    background-color: rgba(255,255,255, .35);
+    @include borderRadius(10px);
+    backdrop-filter: blur(20px);
+    box-shadow: 5px 5px 10px $black05;
+    margin: 0;
+    .city{
+        display: flex;
+        flex-direction:column;
+        align-items: center;
+        border-right: 1px solid $black01;
+        @include transition(all, 1s, ease);
+        h2{
+            font-size: 4.5rem;
+            font-weight: 700;
+            margin: 0;
+            span{
+                font-size: 2.5rem;
+                font-weight: 500;
+            }
+        }
+        img{
+            width: 16rem;
+            height: 16rem;
+        }
+    }
+    .info{
+        display: flex;
+        flex-direction:column;
+        @include transition(all, 1s, ease);
+        .header{
+            display: flex;
+            align-items:center;
+            justify-content: space-between;
+            border-bottom: 1px solid $black01;
+            padding-bottom: 1rem;
+            .status{
+                h2, p{
+                    margin: 0;
+                }
+                h2{
+                    font-size: 3rem;
+                    font-weight: 700;
+                }
+                p{
+                    font-size: 1rem;
+                    text-transform: capitalize;
+                }
+            }
+            .temp{
+                span{
+                    font-size: 2.25rem;
+                    font-weight: 600;
+                }
+                img{
+                    width: 4rem;
+                    height: 4rem;
+                }
+            }
+        }
+        .sub-info{
+            display: flex;
+            justify-content: center;
+            padding-top: 1rem;
+            .weather-card{
+                display: flex;
+                flex-direction:column;
+                align-items: center;
+                margin: .5rem 1rem;
+                padding: 1rem;
+                font-size: 1rem;
+                font-weight: 600;
+                background-color: rgba(255, 255, 255, .5);
+                @include borderRadius(10px);
+                box-shadow: 7px 5px 20px $black05;
+                img{
+                    width: 3.5rem;
+                    height: 3.5rem;
+                }
+                p{
+                    font-size: .65rem;
+                    font-weight: 500;
+                    margin: 0;
+                }
+            }
+        }
+    }    
+}
+
+@media screen and (max-width: 990px){
+    .banner{
+        .city{
+            border: none;
+        }
+    }
+}
+@media screen and (max-width: 420px){
+    .banner{
+        .info{
+            .sub-info{
+                flex-direction: column;
+                width: 100%;
+                .weather-card{
+                    width: 100%;
+                    margin: 0;
+                    margin-bottom: 1rem;
+                }
+            }
+        }
+    }
+}

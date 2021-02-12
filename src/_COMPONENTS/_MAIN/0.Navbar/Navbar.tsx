@@ -3,30 +3,42 @@ import React, { useState, useEffect} from 'react'
 //REDUX IMPORTS
 import { useSelector, useDispatch } from 'react-redux'
 import { selectCity } from '../../../_STORE/City/actions'
-import { ICity } from '../../../_STORE/City/types'
+import { currentForecast, weekForecast} from '../../../_STORE/Forecast/actions'
+import { MainState } from '../../../_STORE'
 
 //TYPES INTERFACES IMPORTS
 
 //UTILITIES IMPORTS
-import { fetchCity, fetchForecast, setRedux } from './utilities'
+import { setRedux } from './utilities'
 
 //STYLE
 import './Navbar.scss';
-import { currentForecast } from '../../../_STORE/Forecast/actions'
 
 export default function Navbar() {
 
     const [filters, showFilters] = useState(false)
     const [byCity, setByCity] = useState({ city: 'Rome', country: 'IT' })
-    const state = useSelector(state => state)
+    const state = useSelector((state: MainState) => state)
     const dispatch = useDispatch()
+
+
+    const setReduxData = async () => {
+        const result = await setRedux(byCity)
+        console.log(result)
+        dispatch(selectCity(result.city))
+        dispatch(currentForecast(result.current))
+        dispatch(weekForecast(result.week))
+    }
+    
+    useEffect(() => {
+        (async () => {
+            await setReduxData()
+        })()  
+    }, [dispatch])
 
     const setCity = async (e: React.KeyboardEvent) => {
         if (e.key === 'Enter') {
-            const result = await setRedux(byCity)
-            console.log(result)
-            dispatch(selectCity(result.city))
-            dispatch(currentForecast(result.current))
+            await setReduxData()
         }
     }
 

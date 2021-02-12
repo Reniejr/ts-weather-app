@@ -1,0 +1,61 @@
+@import '../../../../../_SASS/Colors';
+@import '../../../../../_SASS/Positions';
+@import '../../../../../_SASS/CrossBrowser';
+.week{
+    margin: 0;
+    margin-top: 12rem;
+    padding: 2rem .5rem;
+    @include borderRadius(10px);
+    background-color: rgba(255, 255, 255, .7);
+    backdrop-filter: blur(10px);
+    .col{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        border-left: 1px solid $black01;
+        border-left: 1px solid $black01;
+        img{
+            width: 4rem;
+            height: 4rem;
+        }
+        p{
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+        .temp{
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            img{
+                width: 2rem;
+                height: 2rem;
+            }
+            p{
+                font-size: .9rem;
+                margin: 0;
+                font-weight: 500;
+                text-align: left;
+                span{
+                    font-size: 1rem;
+                    font-weight: 600;
+                }
+            }
+        }
+        .details{
+            display: flex;
+            margin-top: .5rem;
+            img{
+                width: 1.5rem;
+                height: 1.5rem;
+                margin-right: .5rem;
+            }
+            span{
+                margin-right: 3px;
+                font-weight: 600;
+            }
+        }
+    }
+    .col:nth-of-type(1){
+        border-left: none;
+    }
+}

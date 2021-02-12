@@ -2,16 +2,19 @@
 @import '../../../_SASS/Colors';
 @import '../../../_SASS/Positions';
 .weather-nav{
-    width: 100%;
+    width: 96%;
     height: 84px;
     padding: 1rem;
+    margin: 2%;
     position: fixed;
     top: 0;
     border-bottom: 1px solid $black01;
     display: flex;
     align-items: center;
     backdrop-filter: blur(10px);
-    background-color: rgba(255, 255, 255, 0.5);
+    background-color: rgba(255, 255, 255, 0.6);
+    @include borderRadius(10px);
+    z-index: 9999;
     .logo{
         width: 25%;
         @include flexCenter(row, false, 'y');
@@ -28,6 +31,7 @@
     }
     .search-bar{
         width: 75%;
+        @include transition(width, 1s, ease);
         .search-inputs{
             @include flexCenter(row, false, 'y');
             @include borderRadius(5px);
@@ -64,6 +68,48 @@
             &:hover{
                 text-decoration: underline;
             }
+        }
+    }
+}
+
+@media screen and (max-width: 1239px){
+    .weather-nav{
+        .logo{
+            span{
+                font-size: 1.25rem
+            }
+        }
+    }
+}
+@media screen and (max-width: 1096px){
+    .weather-nav{
+        .logo{
+            span{
+                font-size: 1rem
+            }
+        }
+    }
+}
+@media screen and (max-width: 972px){
+    .weather-nav{
+        .logo{
+            width: 15%;
+            span{
+                display: none;
+            }
+        }
+        .search-bar{
+            width: 85%;
+        }
+    }
+}
+@media screen and (max-width: 680px){
+    .weather-nav{
+        .logo{
+            display: none;
+        }
+        .search-bar{
+            width: 100%;
         }
     }
 }

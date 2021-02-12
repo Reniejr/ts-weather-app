@@ -8,7 +8,7 @@ interface ICurrentForecast{
 
 interface IWeeKForecast{
     type: typeof WEEK_FORECAST,
-    forecast: IForecast[]
+    weekForecast: IForecast[]
 }
 
 const currentForecast = (forecast: IForecast) => ({
@@ -16,7 +16,7 @@ const currentForecast = (forecast: IForecast) => ({
     forecast       
 })
 
-const weekForecast = (weekForecast: IForecast[]) => ({
+const weekForecast = (weekForecast: Array<IForecast>) => ({
     type: WEEK_FORECAST,
     weekForecast
 })

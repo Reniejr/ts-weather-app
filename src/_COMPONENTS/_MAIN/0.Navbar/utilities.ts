@@ -1,25 +1,18 @@
 //REDUX IMPORTS
 import { storeConfig } from '../../../_STORE'
-import { selectCity } from '../../../_STORE/City/actions'
-import { currentForecast, weekForecast} from '../../../_STORE/Forecast/actions'
+import { SELECT_CITY } from '../../../_STORE/City/constants'
+import { CURRENT_FORECAST, WEEK_FORECAST } from '../../../_STORE/Forecast/constants'
 
 //INTERFACE IMPORTS
 import { ICity } from '../../../_STORE/City/types'
 import { IForecast } from '../../../_STORE/Forecast/types'
+import { IDaily, IQueryCity, IQueryForecast } from './types'
+import { selectCity } from '../../../_STORE/City/actions'
 
 //MAIN
 let urlCity: string = 'http://api.openweathermap.org/data/2.5/forecast?q='
 let urlForecast: string = 'https://api.openweathermap.org/data/2.5/onecall?'
 const apiKey: string | undefined = `${process.env.REACT_APP_API_KEY}`
-//INTERFACE
-interface IQueryCity{
-    city: string,
-    country: string
-}
-interface IQueryForecast{
-    lat: number,
-    lon: number
-}
 
 //FETCH FORECAST
 export const fetchCity = async (query: IQueryCity): Promise<ICity> => {
@@ -44,11 +37,15 @@ export const fetchForecast = async (query: IQueryForecast) => {
 
 //SET REDUX
 export const setRedux = async (query: IQueryCity) => {
-    const reduxCity = storeConfig.getState().city
-    const reduxForecast = storeConfig.getState().forecastInfo
+    //CITY
     const city: ICity = await fetchCity(query)
     const forecast = await fetchForecast({ lat: city.lat, lon: city.long })
+
+    let week:IForecast[] = []
+
+    //CURRENT
     const current: IForecast = {
+        id: forecast.current.weather[0].id,
         main: forecast.current.weather[0].main,
         description: forecast.current.weather[0].description,
         icon: forecast.current.weather[0].icon,
@@ -59,10 +56,31 @@ export const setRedux = async (query: IQueryCity) => {
         rain: forecast.current.rain ? forecast.current.rain : 0,
         snow: forecast.current.snow ? forecast.current.snow : 0
     }
-    // await reduxCity.dispatch(selectCity(city))
+
+    //WEEK
+    forecast.daily.map((day:IDaily) => {
+        let dayWeather: IForecast = {
+            id: day.weather[0].id,
+            main: day.weather[0].main,
+            description: day.weather[0].description,
+            icon: day.weather[0].icon,
+            min_temp: day.temp.min,
+            max_temp: day.temp.max,
+            humidity: day.humidity,
+            wind_speed: day.wind_speed,
+            clouds: day.clouds,
+            rain: day.rain ? day.rain : 0,
+            snow: day.snow ? day.snow : 0
+        }
+        week=week.concat(dayWeather)
+    })
+     
+    //REDUX INFOS
     const infos = {
         city: city,
-        current: current
+        current: current,
+        week: week
     }
+
     return infos
 }

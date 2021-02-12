@@ -2,9 +2,10 @@ import { IForecast, IForecastApp } from './types'
 import { CURRENT_FORECAST, WEEK_FORECAST } from './constants'
 import { ForecastApp } from './actions'
 
-let forecast: IForecast[] = []
+let forecast: Array<IForecast> = []
 const forecastInfo: IForecastApp = {
     current: {
+        id: 0,
         main: '',
         description: '',
         icon: '',
@@ -23,7 +24,7 @@ export const forecastReducer = (state = forecastInfo, action: ForecastApp): IFor
         case CURRENT_FORECAST:
             return { ...state, current: action.forecast }
         case WEEK_FORECAST:
-            return { ...state, forecast: action.forecast}
+            return { ...state, forecast: action.weekForecast }
         default: return state
     }
 }
