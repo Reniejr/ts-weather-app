@@ -59,7 +59,7 @@ export const setRedux = async (query: IQueryCity) => {
 
     //WEEK
     let daily;
-    forecast.daily.length > 6 
+    forecast.daily.length > 7 
         ? daily = forecast.daily.slice(0, 6)
         : daily = forecast.daily
     daily.map((day:IDaily) => {
