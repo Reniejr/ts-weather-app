@@ -58,7 +58,11 @@ export const setRedux = async (query: IQueryCity) => {
     }
 
     //WEEK
-    forecast.daily.slice(0,6).map((day:IDaily) => {
+    let daily;
+    forecast.daily.length > 6 
+        ? daily = forecast.daily.slice(0, 6)
+        : daily = forecast.daily
+    daily.map((day:IDaily) => {
         let dayWeather: IForecast = {
             id: day.weather[0].id,
             main: day.weather[0].main,
