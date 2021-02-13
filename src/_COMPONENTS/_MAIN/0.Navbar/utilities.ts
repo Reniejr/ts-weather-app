@@ -10,7 +10,7 @@ import { IDaily, IQueryCity, IQueryForecast } from './types'
 import { selectCity } from '../../../_STORE/City/actions'
 
 //MAIN
-let urlCity: string = 'http://api.openweathermap.org/data/2.5/forecast?q='
+let urlCity: string = 'https://api.openweathermap.org/data/2.5/forecast?q='
 let urlForecast: string = 'https://api.openweathermap.org/data/2.5/onecall?'
 const apiKey: string | undefined = `${process.env.REACT_APP_API_KEY}`
 
